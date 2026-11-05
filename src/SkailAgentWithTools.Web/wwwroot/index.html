@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent with tools · skail demo</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Agent with tools</h1>
+      <p class="subtitle">A skail function runs a support agent in a loop: at each step the model decides to use a tool (look up the order,
+        track the delivery) or to answer the customer. Each decision and each tool call is a recorded step, so if the worker stops, the case
+        resumes without asking the model again. With no answer in 6 steps, the case goes to a person.</p>
+    </header>
+
+    <section class="controls">
+      <label for="message">Customer message</label>
+      <input id="message" type="text" maxlength="300">
+      <button id="ask" type="button">Ask</button>
+    </section>
+
+    <section class="status">
+      <span id="state" class="badge idle">Idle</span>
+      <span>Step <strong id="step">0</strong>/6</span>
+      <span>Model calls <strong id="modelCalls">0</strong></span>
+      <span>Planner <span id="planner" class="pill">-</span></span>
+      <a id="monitor" href="#" target="_blank" rel="noopener noreferrer" hidden>Open the skail Monitor</a>
+    </section>
+
+    <p id="error" class="error" hidden></p>
+
+    <div id="result" class="result" role="status" hidden></div>
+
+    <h2>Agent timeline</h2>
+    <ol id="timeline" class="timeline"></ol>
+
+    <footer>Case <code id="caseId">-</code></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
